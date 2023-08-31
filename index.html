@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style.css">
+    <title>Coding Quiz</title>
+</head>
+<body>
+    <!--Timer + past scores-->
+    <div class="header">
+        <p class="see-previous-scores">View high scores</p>
+        <p class="timer">Time: 00:60</p>    
+    </div>
+
+
+    <!--Start Screen-->
+    <div class="start-screen">
+        <h1 class="title">Simple Coding Quiz</h1>
+        <p class="quiz-descr">
+            Try to answer the following code Related questions within the 
+            time limit. Keep in mind that incorrect answers will penalize 
+            your score/time by ten seconds!
+        </p>
+        <button class="start-quizbtn">Start Quiz</button>
+    </div>
+    
+    <!--Questions-->
+    <div class="question-answer-box">
+        <div class="question">
+            <h1>Commonly used data types DO Not Include:</h1>
+        </div>
+
+        <div class="answer">
+            <div class="option">1. strings</div>
+            <div class="option">2. booleans</div>
+            <div class="option">3. alerts</div>
+            <div class="option">4. numbers</div>
+        </div>
+
+        <div class="after-answer-clicked">
+            Wrong
+        </div>
+    </div>
+
+    <!--After questions completed-->
+    <div class="end-screen">
+        <h1>All done!</h1>
+        <div class="end-screen-box">
+            <p>Your final score is 22.</p>
+            <p class="user-initials">
+                Enter initials: 
+                <textarea class="type-initials">
+                </textarea>
+                <button class="initials-submitbtn">Submit</button>
+            </p>
+        </div>
+    </div>
+
+    <!--User Previous High Scores-->
+    <div class="high-scores">
+        <h1>High scores</h1>
+        <div class="display-user-scores">
+            <span>1.AB - 22</span>
+        </div>
+
+        <div class="high-score-btns">
+            <button class="go-back">Go back</button>
+            <button class="clear-scores">Clear high scores</button>            
+        </div>
+    </div>
+</body>
+</html>

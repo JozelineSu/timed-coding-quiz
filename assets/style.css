@@ -1,0 +1,146 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.see-previous-scores {
+    color: rgb(204, 0, 255);
+}
+
+.start-screen {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 540px;
+}
+
+.start-quizbtn {
+    font-size: 16px;
+    background-color: rgb(74, 0, 192);
+    color: #fff;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    padding: 10px 15px;
+}
+
+.start-quizbtn:hover {
+    background-color: rgb(225, 103, 255);
+}
+
+/*Questions + Answers*/
+.question-answer-box {
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.answer,
+.after-answer-clicked {
+    align-self: flex-start;
+}
+
+.option {
+    font-size: 16px;
+    background-color: rgb(74, 0, 192);
+    color: #fff;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+}
+
+.option:hover {
+    background-color: rgb(225, 103, 255);
+}
+
+/* Shows user final score + user puts initials*/
+
+.end-screen {
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.end-screen h1 {
+    align-self: flex-start;
+}
+
+.user-initials {
+    display: flex;
+    align-items: center;
+    
+}
+
+.user-initials textarea {
+    width: 300px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.initials-submitbtn {
+    background-color: rgb(74, 0, 192);
+    color: #fff;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    padding: 10px 15px;
+}
+
+.initials-submitbtn:hover {
+    background-color: rgb(225, 103, 255);
+}
+
+/* User Previous High Scores*/
+.high-scores {
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.high-scores h1,
+.display-user-scores,
+.high-score-btns {
+    align-self: flex-start;
+}
+
+.display-user-scores {
+    background-color:rgba(60, 0, 139, 0.219);
+    width: 400px;
+    margin-bottom: 15px;
+}
+.go-back,
+.clear-scores {
+    background-color: rgb(74, 0, 192);
+    color: #fff;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    padding: 10px 15px;
+}
+
+.go-back:hover,
+.clear-scores:hover {
+    background-color: rgb(225, 103, 255);
+}
