@@ -11,9 +11,17 @@ body {
     color: rgb(204, 0, 255);
 }
 
+.options-box,
+.after-answer-clicked,
+.end-screen-box h1,
+.high-score-box h1,
+.displays-previous-scores,
+.high-score-btns {
+    align-self: flex-start;
+}
+
 /*Start Page*/
 .start-screen {
-    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,24 +37,44 @@ body {
 .question-answer-box,
 .end-screen-box,
 .high-score-box {
-    opacity: 1;
+    opacity: 0;
+    transform: translate(-50%, -50%); 
+    pointer-events: none;   
     display: flex;
     flex-direction: column;
     align-items: center;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
 }
 
-.options-box,
-.after-answer-clicked,
-.end-screen-box h1,
-.high-score-box h1,
-.displays-previous-scores,
-.high-score-btns {
-    align-self: flex-start;
+/*Classes added in javascript*/
+.start-screen.click-start {
+    opacity: 0;
 }
+
+.question-answer-box.activeQuestion {
+    z-index: 2;
+    opacity: 1;
+    transform: translate(-50%, -50%); 
+    pointer-events: auto;   
+}
+
+.end-screen-box.activeEnd {
+    z-index: 2;
+    opacity: 1;
+    transform: translate(-50%, -50%); 
+    pointer-events: auto;   
+}  
+
+.after-answer-clicked hr {
+    width: 540px;
+}
+
+.after-answer-clicked {
+    font-style: italic;
+}
+
 
 /*Styling for buttons and answer boxes*/
 .start-quizbtn,
