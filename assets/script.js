@@ -7,9 +7,24 @@ var clearScoresBtn = document.querySelector(".clear-scores");
 var questionBox = document.querySelector(".question-answer-box");
 var optionsBox = document.querySelector(".options-box");
 var userAnswerResult = document.querySelector(".after-answer-clicked");
+var timer = document.querySelector(".timer");
 
 // initializing variables
 var questionCount = 0;
+
+var timer = 60;
+
+
+//timer
+function startTimer() {
+    var intervalID = setInterval(function () {
+        timer--;
+        timer.textContent = timer;
+        if(timer === 0) {
+        clearInterval(intervalId);
+        }
+    }, 1000);
+}
 //If Start Quiz Button Clicked
 startBtn.onclick = ()=>{
     startScreen.classList.add("click-start"); // hides start screen
@@ -40,16 +55,26 @@ optionsBox.onclick = ()=> {
         showQuestions(questionCount);
     } else{ // after questions are finished user score and enter initials will show
         var endScreen = document.querySelector(".end-screen-box");
-        var endScreenInfo = document.querySelector(".end-screen-info");
         endScreen.classList.add("activeEnd");
         questionBox.classList.remove("activeQuestion");
-        var allDone = "<h1>" + "All Done!" + "</h1>";
-        var displayEndScreen = "<p class='user-initials'>"
-                            + "Enter initials: " + "</p>";
+        var allDone = "<h1>" + "All Done!" + "</h1>" 
+                    + "<p class='final-score'>" + "Your final score is 22." + "</p>"
+                    + "<div class='end-screen-info' id='initials'>"
+                    + "<form method='POST'>"
+                    + "<div class='initials-input'>"
+                    + "<label for='user-initials'>" + "Enter initials: " + "</label>"
+                    + "<input type='text' name='user-initials' id='user-initials' placeholder='JS'/>"
+                    + "</div>"
+                    + "<button class='initials-submitbtn' type='submit' form='initials' value='Submit'>"
+                    + "Submit" + "</button>"
+                    + "</form>"
+                    + "</div>";
         endScreen.innerHTML = allDone;
-        endScreenInfo.innerHTML = displayEndScreen;
     }
 }
+
+// user initials
+
 
 // display wrong or correct when user clicks their answer
 function optionSelected(answer) {

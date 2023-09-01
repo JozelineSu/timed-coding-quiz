@@ -48,6 +48,10 @@ body {
     left: 50%;
 }
 
+.end-screen-info form {
+    display: flex;
+    flex-wrap: wrap;
+}
 /*Classes added in javascript*/
 .start-screen.click-start {
     opacity: 0;
@@ -60,13 +64,6 @@ body {
     pointer-events: auto;   
 }
 
-.end-screen-box.activeEnd {
-    z-index: 2;
-    opacity: 1;
-    transform: translate(-50%, -50%); 
-    pointer-events: auto;   
-}  
-
 .after-answer-clicked hr {
     width: 540px;
 }
@@ -75,6 +72,12 @@ body {
     font-style: italic;
 }
 
+.end-screen-box.activeEnd {
+    z-index: 2;
+    opacity: 1;
+    transform: translate(-50%, -50%); 
+    pointer-events: auto;   
+}  
 
 /*Styling for buttons and answer boxes*/
 .start-quizbtn,
@@ -104,16 +107,14 @@ body {
 }
 
 /*Line user submits initials*/
-.user-initials {
-    display: flex;
-    align-items: center;   
+.final-score {
+    width: 100%;
 }
 
-.user-initials textarea {
-    width: 300px;
-    margin-right: 15px;
-    margin-left: 15px;
+.initials-input {
+    margin-right: 5px;
 }
+
 
 /*Style for previous scores*/
 .displays-previous-scores {
