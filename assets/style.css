@@ -77,7 +77,15 @@ body {
     opacity: 1;
     transform: translate(-50%, -50%); 
     pointer-events: auto;   
-}  
+} 
+
+.high-score-box.activeScores {
+    z-index: 2;
+    opacity: 1;
+    transform: translate(-50%, -50%); 
+    pointer-events: auto;      
+}
+
 
 /*Styling for buttons and answer boxes*/
 .start-quizbtn,
@@ -121,4 +129,8 @@ body {
     background-color:rgba(60, 0, 139, 0.219);
     width: 400px;
     margin-bottom: 15px;
+}
+
+.go-back {
+    margin-right: 10px;
 }

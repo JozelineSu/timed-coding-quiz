@@ -7,29 +7,33 @@ var clearScoresBtn = document.querySelector(".clear-scores");
 var questionBox = document.querySelector(".question-answer-box");
 var optionsBox = document.querySelector(".options-box");
 var userAnswerResult = document.querySelector(".after-answer-clicked");
-var timer = document.querySelector(".timer");
 
+var endScreen = document.querySelector(".end-screen-box");
 // initializing variables
 var questionCount = 0;
 
-var timer = 60;
+var timerCount = document.querySelector(".timer");
+var time = 75;
 
-
-//timer
+// my timer
 function startTimer() {
-    var intervalID = setInterval(function () {
-        timer--;
-        timer.textContent = timer;
-        if(timer === 0) {
-        clearInterval(intervalId);
-        }
-    }, 1000);
+    var counter = setInterval(function() {
+        time--;
+        timerCount.textContent = "Time: " + time;
+
+        if(time <= 0) {
+            clearInterval(counter);
+            questionEnd();
+        } 
+    }, 1000)
 }
+
 //If Start Quiz Button Clicked
 startBtn.onclick = ()=>{
     startScreen.classList.add("click-start"); // hides start screen
     questionBox.classList.add("activeQuestion"); // show question
     showQuestions(0); // runs function to show question
+    startTimer(time); // starts timer
 }
 
 // function to show questions
@@ -54,26 +58,33 @@ optionsBox.onclick = ()=> {
         questionCount++;
         showQuestions(questionCount);
     } else{ // after questions are finished user score and enter initials will show
-        var endScreen = document.querySelector(".end-screen-box");
-        endScreen.classList.add("activeEnd");
-        questionBox.classList.remove("activeQuestion");
-        var allDone = "<h1>" + "All Done!" + "</h1>" 
-                    + "<p class='final-score'>" + "Your final score is 22." + "</p>"
-                    + "<div class='end-screen-info' id='initials'>"
-                    + "<form method='POST'>"
-                    + "<div class='initials-input'>"
-                    + "<label for='user-initials'>" + "Enter initials: " + "</label>"
-                    + "<input type='text' name='user-initials' id='user-initials' placeholder='JS'/>"
-                    + "</div>"
-                    + "<button class='initials-submitbtn' type='submit' form='initials' value='Submit'>"
-                    + "Submit" + "</button>"
-                    + "</form>"
-                    + "</div>";
-        endScreen.innerHTML = allDone;
+        questionEnd();
     }
+   
 }
 
-// user initials
+// after all questions are answered user score will be shown
+function questionEnd() {
+    endScreen.classList.add("activeEnd");
+    questionBox.classList.remove("activeQuestion");
+}
+
+// after user submits initials they will be taken to their previous high scores
+initialsBtn.onclick = ()=> {
+    var highScores = document.querySelector(".high-score-box");
+    highScores.classList.add("activeScores");
+    endScreen.classList.remove("activeEnd");
+    var userScores = "<h1>" + "High scores" + "</h1>"
+                    + "<div class='displays-previous-scores'>"
+                    + "<span>" + "1.AB - 22" + "</span>"
+                    + "</div>"
+                    + "<div class='high-score-btns'>"
+                    + "<button class='go-back'>" + "Go back" + "</button>"
+                    + "<button class='clear-scores'>" + "Clear high scores" + "</button>"            
+                    + "</div>";
+    highScores.innerHTML = userScores;
+
+}
 
 
 // display wrong or correct when user clicks their answer
@@ -91,6 +102,7 @@ function optionSelected(answer) {
         var displayWrong = "<hr>" + "<div class='result'>" + userIsWrong + "</div>";
         userAnswerResult.innerHTML = displayWrong;
         console.log("Answer is wrong");
+        time-=10;
     }
 }
 
