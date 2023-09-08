@@ -99,19 +99,25 @@ initialsBtn.onclick = ()=> {
     var highScores = document.querySelector(".high-score-box");
     highScores.classList.add("activeScores");
     endScreen.classList.remove("activeEnd");
-    
-    var initialsText = userInitials.value.trim();
 
-    initials.push(initialsText);
+    
+    initials.push(userInitials.value);
+    scores.push(userScore);
     userInitials.value = "";
 
     storeInitials();
     renderInitials();
+    
 }
 
 // back to start screen
 goBackBtn.onclick = ()=> {
     window.location.reload();
+}
+
+clearScoresBtn.onclick = ()=> {
+    localStorage.clear();
+
 }
 
 // save initials with grade
@@ -123,26 +129,35 @@ var scoreList = document.querySelector("#past-scores"); // ol high score box in 
 // userScore holds the score of the user
 
 var initials = [];
+var scores = [];
 
 function renderInitials() {
     scoreList.innerHTML = "";
 
-    for (var i = 0; i < initials.length; i++) {
-        var initial = initials[i];
+    for (var i = 0; i < scores.length; i++) {
+        var score = scores[i];
+        score = userScore;
+    }
 
+    for (var i = 0; i < initials.length; i++) {
+        var initial = initials[i];  
         var li = document.createElement("li");
-        li.textContent = initial + " - " + userScore;
+        li.textContent = initial + " - " + scores;
         li.setAttribute("data-index", i);
 
         scoreList.appendChild(li);
     }
-}
-
+    }
+        
 function init() {
-    var storedInitials = JSON.parse(localStorage.getItem(initials));
-    console.log("These are my stored initials");
+    var storedInitials = JSON.parse(localStorage.getItem("initials"));
+    var storedScores = JSON.parse(localStorage.getItem("scores"));
     if (storedInitials !== null) {
         initials = storedInitials;
+
+    };
+    if (storedScores !== null) {
+        scores = storedScores;
     }
 
     renderInitials();
@@ -150,6 +165,8 @@ function init() {
 
 function storeInitials() {
     localStorage.setItem("initials", JSON.stringify(initials));
+    localStorage.setItem("scores", JSON.stringify(scores));
+
 }
 
 
