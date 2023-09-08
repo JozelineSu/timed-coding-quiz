@@ -10,7 +10,7 @@
     <!--Timer + past scores-->
     <div class="header">
         <p class="see-previous-scores">View high scores</p>
-        <p class="timer">Time: 75</p>    
+        <p class="timer">Time: 50</p>    
     </div>
 
 
@@ -46,12 +46,12 @@
     <!--After questions completed-->
     <div class="end-screen-box">
         <h1>All done!</h1>
-        <p class="final-score">Your final score is 22.</p>
+        <p class="final-score"><!--Your final score is 22.--></p>
         <div class="end-screen-info" id="initials">
-            <form method="POST">
+            <form id="initials-form" method="POST">
                 <div class="initials-input">
                   <label for="user-initials">Enter initials: </label>
-                  <input type="text" name="userl-initials" id="user-initials" placeholder="JS"/>
+                  <input type="text" name="user-initials" id="user-initials"/>
                 </div>
                 <button class="initials-submitbtn" type="submit" form="initials" value="Submit">Submit</button>
             </form>
@@ -60,16 +60,18 @@
 
     <!--User Previous High Scores-->
     <div class="high-score-box">
-        <!--
+        
         <h1>High scores</h1>
         <div class="displays-previous-scores">
-            <span>1.AB - 22</span>
+            <span class="user-past">
+                <ol id="past-scores"></ol>
+            </span>
         </div>
 
         <div class="high-score-btns">
             <button class="go-back">Go back</button>
             <button class="clear-scores">Clear high scores</button>            
-        </div>-->
+        </div>
     </div>
 
     <script src="./assets/script.js"></script>
