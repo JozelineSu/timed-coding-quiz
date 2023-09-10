@@ -29,7 +29,6 @@ function startTimer() {
             questionEnd();
             clearInterval(counter);
         } 
-
     }, 1000)
 }
 
@@ -98,9 +97,11 @@ function optionSelected(answer) {
 
 function questionEnd() {
     endScreen.classList.add("activeEnd");
+    time = 0;
     questionBox.classList.remove("activeQuestion");
     var finalScore = "Your final score is " + userScore + ".";
     scoreText.innerHTML = finalScore;
+
 }
 
 // after user submits initials they will be taken to their previous high scores
@@ -108,7 +109,6 @@ function questionEnd() {
 initialsBtn.onclick = ()=> {
     highScores.classList.add("activeScores");
     endScreen.classList.remove("activeEnd");
-    
     initials.push(userInitials.value);
     scores.push(userScore);
     userInitials.value = "";
@@ -145,7 +145,7 @@ function renderInitials() {
     for (var i = 0; i < initials.length; i++) {
         var initial = initials[i];  
         var li = document.createElement("li");
-        li.textContent = initial + " - " + scores;
+        li.textContent = initial + " - " + userScore;
         li.setAttribute("data-index", i);
 
         scoreList.appendChild(li);
