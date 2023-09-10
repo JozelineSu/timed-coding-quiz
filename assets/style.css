@@ -72,6 +72,9 @@ body {
     font-style: italic;
 }
 
+.start-screen.hideStart {
+    opacity: 0;
+}
 .end-screen-box.activeEnd {
     z-index: 2;
     opacity: 1;

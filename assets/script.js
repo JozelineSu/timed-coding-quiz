@@ -8,28 +8,38 @@ var questionBox = document.querySelector(".question-answer-box");
 var optionsBox = document.querySelector(".options-box");
 var userAnswerResult = document.querySelector(".after-answer-clicked");
 var endScreen = document.querySelector(".end-screen-box");
+var seeHighScores = document.querySelector(".see-previous-scores"); 
+var timerCount = document.querySelector(".timer");
+var highScores = document.querySelector(".high-score-box");
+var userInitials = document.querySelector("#user-initials"); 
+var scoreText = document.querySelector(".final-score"); 
+var scoreList = document.querySelector("#past-scores");
 
 // initializing variables
 var questionCount = 0;
-var timerCount = document.querySelector(".timer");
 var time = 50;
 var userScore = 0;
+
 // my timer
 function startTimer() {
     var counter = setInterval(function() {
         time--;
         timerCount.textContent = "Time: " + time;
-        if (time === 0) {
+        if(time <= 0) {
             questionEnd();
             clearInterval(counter);
-        } else if(time < 0) {
-            questionEnd();
-            clearInterval(counter);
-        }
+        } 
+
     }, 1000)
 }
 
-//If Start Quiz Button Clicked
+// view past scores
+seeHighScores.onclick = ()=> {
+    highScores.classList.add("activeScores");
+    startScreen.classList.add("hideStart");
+}
+
+// when start button is clicked question and timer will run
 startBtn.onclick = ()=>{
     startScreen.classList.add("click-start"); // hides start screen
     questionBox.classList.add("activeQuestion"); // show question
@@ -37,7 +47,7 @@ startBtn.onclick = ()=>{
     startTimer(time); // starts timer
 }
 
-// function to show questions
+// shows and loops through the questions
 function showQuestions(index) {
     var questionText = document.querySelector(".question");
     var displayQue = "<h1>" + questions[index].question + "</h1>";
@@ -64,8 +74,7 @@ optionsBox.onclick = ()=> {
    
 }
 
-// display wrong or correct when user clicks their answer
-
+// display wrong or correct when user clicks their answer 
 function optionSelected(answer) {
     let userAns = answer.textContent;
     console.log(userAns);
@@ -95,11 +104,10 @@ function questionEnd() {
 }
 
 // after user submits initials they will be taken to their previous high scores
+
 initialsBtn.onclick = ()=> {
-    var highScores = document.querySelector(".high-score-box");
     highScores.classList.add("activeScores");
     endScreen.classList.remove("activeEnd");
-
     
     initials.push(userInitials.value);
     scores.push(userScore);
@@ -107,7 +115,6 @@ initialsBtn.onclick = ()=> {
 
     storeInitials();
     renderInitials();
-    
 }
 
 // back to start screen
@@ -115,22 +122,18 @@ goBackBtn.onclick = ()=> {
     window.location.reload();
 }
 
+// clears past scores
 clearScoresBtn.onclick = ()=> {
     localStorage.clear();
+    scoreList.innerHTML = "";
 
 }
 
-// save initials with grade
-var displayScore = document.querySelector(".displays-previous-score");
-var userPast = document.querySelector(".user-past"); // div that holds past scores
-var userInitials = document.querySelector("#user-initials"); // where user inputs their initials (screen after questions end)
-var scoreText = document.querySelector(".final-score"); // user score (on after questions completed ^^)
-var scoreList = document.querySelector("#past-scores"); // ol high score box in user past div
-// userScore holds the score of the user
-
+// empty array to hold initials and scores
 var initials = [];
 var scores = [];
 
+// loops through initials + scores and adds list items to previous scores
 function renderInitials() {
     scoreList.innerHTML = "";
 
@@ -148,27 +151,25 @@ function renderInitials() {
         scoreList.appendChild(li);
     }
     }
-        
+
+// shows stored scores + initials
 function init() {
     var storedInitials = JSON.parse(localStorage.getItem("initials"));
     var storedScores = JSON.parse(localStorage.getItem("scores"));
-    if (storedInitials !== null) {
+    if (storedInitials !== null && storedScores !== null) {
         initials = storedInitials;
-
-    };
-    if (storedScores !== null) {
         scores = storedScores;
-    }
-
+    };
+      
     renderInitials();
 }
 
+// saves past scores + initials
 function storeInitials() {
     localStorage.setItem("initials", JSON.stringify(initials));
     localStorage.setItem("scores", JSON.stringify(scores));
 
 }
-
 
 init();
 
@@ -185,8 +186,8 @@ var questions = [
         ]
     },
     {
-        question: "The condition in an if / else statement is ecnloused with ________.",
-        answer: "2. curly brackets",
+        question: "The condition in an if / else statement is enclosed with ________.",
+        answer: "3. parenthesis",
         options: [
             "1. quotes",
             "2. curly brackets",
@@ -195,7 +196,7 @@ var questions = [
         ]
     },
     {
-        question: "Arrays in JavaScript can be used to stor _________.",
+        question: "Arrays in JavaScript can be used to store _________.",
         answer: "4. all of the above",
         options: [
             "1. numbers and strings",
